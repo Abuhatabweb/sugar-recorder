@@ -3,18 +3,38 @@ document.addEventListener("DOMContentLoaded", () => {
     let tableBody = document.querySelector("#recordsTable tbody");
     let storageKey = "bloodSugarRecords";
 
+
     function loadRecords() {
         let records = JSON.parse(localStorage.getItem(storageKey)) || [];
         records.forEach(addRecordToTable);
     }
     function addRecordToTable(record, index) {
         let row = document.createElement("tr");
+        let color = "white"
+        if(record.sugarLevel < 70){
+            color = "#acace3"
+        }else if(record.sugarLevel >= 70 && record.sugarLevel < 80){
+            color= "#dbfde7"
+        }
+        else if(record.sugarLevel >= 80 && record.sugarLevel <140){
+            color= "#6cf76c"
+        }
+        else if(record.sugarLevel >= 140 && record.sugarLevel < 230){
+            color= "#f9f98e"
+        }
+        else if(record.sugarLevel >= 230 && record.sugarLevel < 300){
+            color= "#f5b5b5"
+        }
+        else if(record.sugarLevel >300){
+            color= "#ff5f5f"
+        }
         row.innerHTML = `
             <td>${record.dateTime}</td>
-            <td>${record.sugarLevel} mg/dL</td>
+            <td style="background-color:${color}">${record.sugarLevel} mg/dL</td>
             <td>${record.testType}</td>
             <td><button data-index="${index}" class="delete-btn">حذف</button></td>`
         ;
+
         tableBody.appendChild(row);
     }
 
