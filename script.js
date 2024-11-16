@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
         else if(record.sugarLevel >= 140 && record.sugarLevel < 230){
             color= "#f9f98e"
         }
-        else if(record.sugarLevel >= 230 && record.sugarLevel < 300){
+        else if(record.sugarLevel >= 230 && record.sugarLevel <= 300){
             color= "#f5b5b5"
         }
         else if(record.sugarLevel >300){
